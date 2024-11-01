@@ -9,22 +9,30 @@ turkuIcon.onclick = (e) => {
 	if(executing)
 		return
 	if(counter > 5) 
+    turkuIcon.onmousedown = undefined;
+    turkuIcon.onmouseup = undefined;
 		setInterval(() => {
+      turkuIcon.style.transition = 'none'
 			turkuIcon.style.transform = `rotate(${new Date().getTime() - 1000000000}deg)`
 		}, 20)
-	else {
-		executing = true
-		turkuIcon.style.transition = 'all 100ms ease-in-out'
-		turkuIcon.style.transform = `scale(1.1)`
-		setTimeout(() => {
-			turkuIcon.style.transform = `scale(1.0)`
-			setTimeout(() => {
-				counter++;
-				turkuIcon.style.transition = 'none'
-				executing = false
-			}, 110)
-		}, 110)
-	}
+}
+
+turkuIcon.onmousedown = (e) => {
+  e.preventDefault()
+  executing = true
+  turkuIcon.style.transition = 'all 100ms ease-in-out'
+  turkuIcon.style.transform = `scale(1.1)`
+}
+
+turkuIcon.onmouseup = (e) => {
+  e.preventDefault()
+  turkuIcon.style.transition = 'all 100ms ease-in-out'
+  turkuIcon.style.transform = `scale(1.0)`
+  setTimeout(() => {
+    counter++;
+    turkuIcon.style.transition = 'none'
+    executing = false
+  }, 110)
 }
 
 console.log(`
