@@ -34,6 +34,11 @@ turkuIcon.onmouseup = (e) => {
     executing = false
   }, 110)
 }
+let scaleUp = true
+setInterval(() => {
+  document.getElementsByTagName('body')[0].style.transform = scaleUp ? "scale(1.005)" :  "scale(1.0)"
+  scaleUp = !scaleUp
+}, 1000)
 
 console.log(`
 	  @@@@                                         %*==*%                                         @@@@  

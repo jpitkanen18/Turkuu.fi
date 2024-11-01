@@ -107,6 +107,8 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         gap: 50px;
         padding: 0px 10px;
+        transition: transform 1s ease-in-out;
+        overflow: hidden;
     }
     h1, h2, h3, li, img, marquee {
         filter: drop-shadow(5px 5px 10px #000);
@@ -144,7 +146,6 @@
         background: transparent;
         border: 2px solid rgb(211, 211, 211);
         color: white;
-        /*        text-transform: uppercase;*/
         letter-spacing: 0.1em;
         border-radius: 10px;
         margin-top: 15px;
@@ -159,7 +160,7 @@
         background-clip: text !important;
         background-color: linear-gradient(42deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
         color: transparent;
-        animation: static-animation 7s infinite;
+        animation: static-animation 6s infinite;
     }
     .topleft, .topright, .botleft, .botright {
         position: absolute;
