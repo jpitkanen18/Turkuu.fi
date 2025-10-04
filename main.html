@@ -169,6 +169,7 @@
     marquee h3 {
         font-size: 15px;
         letter-spacing: 20px;
+                font-weight: lighter;
     }
     li {
         font-weight: 400;
@@ -185,7 +186,7 @@
     }
     
     #turku {
-        width: 200px;
+        width: 170px;
         transition: transform 1s ease-in-out;
     }
 
@@ -234,6 +235,14 @@
         left: -10px;
     }
 
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
     .buttons a:hover {
         /* 
         color: transparent;
@@ -246,7 +255,9 @@
         animation-delay: -2.5s;
     }
 
-    .buttons a:hover .topleft, .buttons a:hover .topright, .buttons a:hover .botleft, .buttons a:hover .botright { 
+    @media only screen and (min-width: 450px) {
+
+                .buttons a:hover .topleft, .buttons a:hover .topright, .buttons a:hover .botleft, .buttons a:hover .botright { 
         opacity: 1;
     }
 
@@ -257,13 +268,6 @@
         height: 15px;
     }
 
-    .buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
     }
     @media only screen and (max-width: 450px) {
         body {
@@ -273,7 +277,47 @@
         #turku {
             margin-bottom: 120px;
         }
+
     }
+
+        @media only screen and (max-width: 420px) {
+        .buttons {
+            margin-top: 30px;
+            border: 2px solid white;
+            border-radius: 12px;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .buttons a {
+            flex: 1;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+            /*
+
+            */
+            border: 2px solid transparent;
+                        /* 
+            color: transparent;
+
+            background-blend-mode: overlay; */
+            transform: translateY(-3px);
+            border: 2px solid white;
+            opacity: 1;
+            animation-delay: -2.5s;
+            border-bottom-width: 4px;
+            transition: all 500ms cubic-bezier(.47,1.64,.41,.8);
+            top: 0px;
+        }
+        .buttons a:hover {
+            border: 2px solid white;
+            border-bottom-width: 4px;
+            top: -2px;
+        }
+        }
 
 </style>
 <script src="main.js"></script>
