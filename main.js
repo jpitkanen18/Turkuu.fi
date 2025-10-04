@@ -1,45 +1,3 @@
-
-
-
-let counter = 0;
-let turkuIcon = document.getElementById("turku")
-let executing = false
-turkuIcon.onclick = (e) => {
-	e.preventDefault();
-	if(executing)
-		return
-	if(counter > 5) 
-    turkuIcon.onmousedown = undefined;
-    turkuIcon.onmouseup = undefined;
-		setInterval(() => {
-      turkuIcon.style.transition = 'none'
-			turkuIcon.style.transform = `rotate(${new Date().getTime() - 1000000000}deg)`
-		}, 20)
-}
-
-turkuIcon.onmousedown = (e) => {
-  e.preventDefault()
-  executing = true
-  turkuIcon.style.transition = 'all 100ms ease-in-out'
-  turkuIcon.style.transform = `scale(1.1)`
-}
-
-turkuIcon.onmouseup = (e) => {
-  e.preventDefault()
-  turkuIcon.style.transition = 'all 100ms ease-in-out'
-  turkuIcon.style.transform = `scale(1.0)`
-  setTimeout(() => {
-    counter++;
-    turkuIcon.style.transition = 'none'
-    executing = false
-  }, 110)
-}
-let scaleUp = true
-setInterval(() => {
-  document.getElementsByTagName('body')[0].style.transform = scaleUp ? "scale(1.005)" :  "scale(1.0)"
-  scaleUp = !scaleUp
-}, 1000)
-
 console.log(`
 	  @@@@                                         %*==*%                                         @@@@  
 %------+% @@@                                @*------*@                                @@@ %+------#
@@ -135,3 +93,70 @@ console.log(`
 									Terve tulloo Turkusee!
 	
 	`)
+
+
+let counter = 0;
+let turkuIcon = document.getElementById("turku")
+let executing = false
+let ogTime = new Date().getTime()
+turkuIcon.onclick = (e) => {
+	e.preventDefault();
+	if(counter > 5) {
+    ogTime = new Date().getTime()
+    executing = true
+    turkuIcon.onmousedown = undefined;
+    turkuIcon.onmouseup = undefined;
+    turkuIcon.onclick = undefined;
+    turkuIcon.style.transition = 'none'
+		turkuIcon.style.transform = `rotate(${(new Date().getTime() - ogTime) * 0.4}deg)`
+		setInterval(() => {
+      turkuIcon.style.transition = 'none'
+			turkuIcon.style.transform = `rotate(${(new Date().getTime() - ogTime) * 0.4}deg)`
+		}, 0)
+  }
+}
+
+var mouseActive = false
+
+turkuIcon.onmousedown = (e) => {
+  mouseActive = true
+  e.preventDefault()
+  if (!executing) {
+    turkuIcon.style.transition = 'all 100ms ease-in-out'
+    turkuIcon.style.transform = `scale(1.2)`
+  }
+}
+
+turkuIcon.onmouseup = (e) => {
+  if (!executing) {
+    turkuIcon.style.transition = 'all 100ms ease-in-out'
+    turkuIcon.style.transform = `scale(1.2)`
+  }
+  e.preventDefault()
+  mouseActive = false
+  turkuIcon.style.transition = 'all 100ms ease-in-out'
+  turkuIcon.style.transform = `scale(1.0)`
+  counter++;
+  console.log("Hello I was called? Hola:", new Date().toISOString())
+  setTimeout(() => {
+    turkuIcon.style.transition = 'all 1000ms ease-in-out'
+  }, 110)
+}
+let scaleUp = true
+setInterval(() => {
+  if(mouseActive || executing)
+    return
+  turkuIcon.style.transform = scaleUp ? "scale(1.04)" :  "scale(1.0)"
+  scaleUp = !scaleUp
+}, 1000)
+
+let turkuu = document.getElementById("turkuu");
+let hankoo = document.getElementById("hankoo");
+
+const restartAnimations = (element) => {
+  element.style.animation = 'none';
+  element.offsetHeight;
+  element.style.animation = null;  
+};
+turkuu.addEventListener("mouseover", () => restartAnimations(turkuu))
+hankoo.addEventListener("mouseover", () => restartAnimations(hankoo))
